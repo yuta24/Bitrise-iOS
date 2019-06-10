@@ -54,6 +54,31 @@ let project = Project(
       ]
     ),
     Target(
+      name: "Domain",
+      type: .framework,
+      platform: .iOS,
+      settings: Settings(dictionary: [
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.bivre.bitrise-client.domain"
+      ]),
+      sources: [
+        TargetSource(path: "Domain"),
+      ],
+      dependencies: [
+      ]
+    ),
+    Target(
+      name: "DomainTests",
+      type: .unitTestBundle,
+      platform: .iOS,
+      sources: [
+        TargetSource(path: "DomainTests"),
+      ],
+      dependencies: [
+        Dependency(type: .target, reference: "Bitrise-iOS"),
+        Dependency(type: .target, reference: "Domain"),
+      ]
+    ),
+    Target(
       name: "Login",
       type: .framework,
       platform: .iOS,
@@ -89,6 +114,7 @@ let project = Project(
         TargetSource(path: "Bitrise"),
       ],
       dependencies: [
+        Dependency(type: .target, reference: "BitriseAPI"),
       ]
     ),
     Target(

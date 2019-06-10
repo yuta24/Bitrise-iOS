@@ -9,3 +9,4 @@ import Foundation
 import UIKit
 
 let app = App(window: UIWindow(frame: UIScreen.main.bounds))
+let store = Store()

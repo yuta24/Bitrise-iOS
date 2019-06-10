@@ -14,6 +14,11 @@ class Coordinator {
     init(window: UIWindow) {
         self.window = window
     }
+
+    func start() {
+        window.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        window.makeKeyAndVisible()
+    }
 }
 
 class App {
