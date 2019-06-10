@@ -1,0 +1,21 @@
+included:
+  - Bitrise-iOS
+  - Shared
+  - Login
+  - Bitrise
+  - Settings
+  - BitriseAPI
+excluded:
+  - Bitrise-iOSTests
+  - SharedTests
+  - LoginTests
+  - BitriseTests
+  - SettingsTests
+  - Carthage
+disabled_rules:
+  - file_length
+  - line_length
+  - function_body_length
+  - type_name
+  - variable_name
+  - nesting

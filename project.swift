@@ -23,6 +23,9 @@ let project = Project(
         Dependency(type: .target, reference: "Settings"),
         Dependency(type: .target, reference: "BitriseAPI"),
         Dependency(type: .carthage(findFrameworks: nil), reference: "APIKit"),
+      ],
+      preBuildScripts: [
+        BuildScript(script: .script("mint run realm/SwiftLint swiftlint"), name: "SwiftLint"),
       ]
     ),
     Target(
