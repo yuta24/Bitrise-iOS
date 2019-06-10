@@ -1,0 +1,138 @@
+ID_PREFIX: &ID_PREFIX com.bivre
+DEPLOYMENT_TARGET: &DEPLOYMENT_TARGET "11.0"
+
+name: Bitrise-iOS
+options:
+  minimumXcodeGenVersion: 2.5.0
+  carthageExecutablePath: mint run Carthage/Carthage carthage
+  bundleIdPrefix: *ID_PREFIX
+  deploymentTarget:
+    iOS: *DEPLOYMENT_TARGET
+settings:
+  DEVELOPMENT_TEAM: PS98BD6732
+  CODE_SIGN_STYLE: Automatic
+targets:
+  Bitrise-iOS:
+    type: application
+    platform: iOS
+    sources:
+      - path: Bitrise-iOS
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise-client
+    dependencies:
+      
+      - target: Shared
+      
+      - target: Login
+      
+      - target: Bitrise
+      
+      - target: Settings
+      
+      - carthage: APIKit
+    scheme:
+      testTargets:
+        - Bitrise-iOSTests
+        
+        - SharedTests
+        
+        - LoginTests
+        
+        - BitriseTests
+        
+        - SettingsTests
+        
+  Bitrise-iOSTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Bitrise-iOSTests
+    dependencies:
+      - target: Bitrise-iOS
+
+  Shared:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Shared
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise-client.shared
+    scheme:
+      testTargets:
+        - SharedTests
+  SharedTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: SharedTests
+    dependencies:
+      - target: Bitrise-iOS
+      - target: Shared
+
+  Login:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Login
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise-client.login
+    scheme:
+      testTargets:
+        - LoginTests
+  LoginTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: LoginTests
+    dependencies:
+      - target: Bitrise-iOS
+      - target: Login
+
+  Bitrise:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Bitrise
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise-client.bitrise
+    scheme:
+      testTargets:
+        - BitriseTests
+  BitriseTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: BitriseTests
+    dependencies:
+      - target: Bitrise-iOS
+      - target: Bitrise
+
+  Settings:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Settings
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise-client.settings
+    scheme:
+      testTargets:
+        - SettingsTests
+  SettingsTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: SettingsTests
+    dependencies:
+      - target: Bitrise-iOS
+      - target: Settings
+
+  BitriseAPI:
+    type: framework
+    platform: iOS
+    sources:
+      - path: BitriseAPI
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise-client.bitrise-api
+    dependencies:
+      - carthage: APIKit
+
