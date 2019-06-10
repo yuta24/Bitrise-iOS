@@ -4,9 +4,11 @@ set -eu
 
 PROJECT_NAME=Bitrise-iOS
 
-cd `dirname $0`/..
-
 `dirname $0`/setup.sh
+
+# generate project.yml
+
+mint run mxcl/swift-sh swift-sh `dirname $0`/generate.sh
 
 # bootstrap
 
