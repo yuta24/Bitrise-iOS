@@ -1,0 +1,68 @@
+ID_PREFIX: &ID_PREFIX com.bivre
+DEPLOYMENT_TARGET: &DEPLOYMENT_TARGET "11.0"
+
+name: {{ app.name }}
+options:
+  minimumXcodeGenVersion: 2.5.0
+  carthageExecutablePath: mint run Carthage/Carthage carthage
+  bundleIdPrefix: *ID_PREFIX
+  deploymentTarget:
+    iOS: *DEPLOYMENT_TARGET
+settings:
+  DEVELOPMENT_TEAM: PS98BD6732
+  CODE_SIGN_STYLE: Automatic
+targets:
+  {{ app.name }}:
+    type: application
+    platform: iOS
+    sources:
+      - path: {{ app.name }}
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: {{ app.bundleIdentifier }}
+    dependencies:
+      {% for framework in frameworks %}
+      - target: {{ framework.name }}
+      {% endfor %}
+      - carthage: APIKit
+    scheme:
+      testTargets:
+        - Bitrise-iOSTests
+        {% for framework in frameworks %}
+        - {{ framework.name }}Tests
+        {% endfor %}
+  Bitrise-iOSTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Bitrise-iOSTests
+    dependencies:
+      - target: {{ app.name }}
+{% for framework in frameworks %}
+  {{ framework.name }}:
+    type: framework
+    platform: iOS
+    sources:
+      - path: {{ framework.name }}
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: {{ framework.bundleIdentifier }}
+    scheme:
+      testTargets:
+        - {{ framework.name }}Tests
+  {{ framework.name }}Tests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: {{ framework.name }}Tests
+    dependencies:
+      - target: {{ app.name }}
+      - target: {{ framework.name }}
+{% endfor %}
+  BitriseAPI:
+    type: framework
+    platform: iOS
+    sources:
+      - path: BitriseAPI
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise-client.bitrise-api
+    dependencies:
+      - carthage: APIKit

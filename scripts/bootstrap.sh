@@ -8,13 +8,13 @@ PROJECT_NAME=Bitrise-iOS
 
 # generate project.yml
 
-mint run mxcl/swift-sh swift-sh `dirname $0`/generate.sh
+mint run --silent mxcl/swift-sh swift-sh `dirname $0`/generate.swift > `dirname $0`/../project.yml
 
 # bootstrap
 
 echo "  + Generate xcodeproje by XcodeGen."
-mint run yonaskolb/XcodeGen xcodegen
-mint run Carthage/Carthage carthage bootstrap --platform iOS --cache-builds
+mint run --silent yonaskolb/XcodeGen xcodegen
+mint run --silent Carthage/Carthage carthage bootstrap --platform iOS --cache-builds
 # bundle exec pod repo update
 # bundle exec pod install
 
