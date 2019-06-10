@@ -20,3 +20,13 @@ targets:
       - path: Bitrise-iOS
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.bivre.cimon
+    scheme:
+      testTargets:
+        - Bitrise-iOSTests
+  Bitrise-iOSTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Bitrise-iOSTests
+    dependencies:
+      - target: *MAIN_TARGET
