@@ -19,10 +19,13 @@ targets:
     sources:
       - path: Bitrise-iOS
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.cimon
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise
+    dependencies:
+      - target: Shared
     scheme:
       testTargets:
         - Bitrise-iOSTests
+        - SharedTests
   Bitrise-iOSTests:
     type: bundle.unit-test
     platform: iOS
@@ -30,3 +33,21 @@ targets:
       - path: Bitrise-iOSTests
     dependencies:
       - target: *MAIN_TARGET
+  Shared:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Shared
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise.shared
+    scheme:
+      testTargets:
+        - SharedTests
+  SharedTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: SharedTests
+    dependencies:
+      - target: *MAIN_TARGET
+      - target: Shared
