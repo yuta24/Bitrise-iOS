@@ -19,7 +19,7 @@ targets:
     sources:
       - path: Bitrise-iOS
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise-client
     dependencies:
       - target: Shared
     scheme:
@@ -39,7 +39,7 @@ targets:
     sources:
       - path: Shared
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise.shared
+      PRODUCT_BUNDLE_IDENTIFIER: comcom.bivre.bitrise-client
     scheme:
       testTargets:
         - SharedTests
@@ -51,3 +51,10 @@ targets:
     dependencies:
       - target: *MAIN_TARGET
       - target: Shared
+  BitriseAPI:
+    type: framework
+    platform: iOS
+    sources:
+      - path: BitriseAPI
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise-client.bitrise-api
