@@ -1,0 +1,22 @@
+MAIN_TARGET: &MAIN_TARGET Bitrise-iOS
+ID_PREFIX: &ID_PREFIX com.bivre
+DEPLOYMENT_TARGET: &DEPLOYMENT_TARGET "11.0"
+
+name: *MAIN_TARGET
+options:
+  minimumXcodeGenVersion: 2.5.0
+  carthageExecutablePath: mint run Carthage/Carthage carthage
+  bundleIdPrefix: *ID_PREFIX
+  deploymentTarget:
+    iOS: *DEPLOYMENT_TARGET
+settings:
+  DEVELOPMENT_TEAM: PS98BD6732
+  CODE_SIGN_STYLE: Automatic
+targets:
+  Bitrise-iOS:
+    type: application
+    platform: iOS
+    sources:
+      - path: Bitrise-iOS
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.bivre.cimon
