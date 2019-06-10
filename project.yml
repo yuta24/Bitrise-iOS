@@ -22,6 +22,7 @@ targets:
       PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise-client
     dependencies:
       - target: Shared
+      - carthage: APIKit
     scheme:
       testTargets:
         - Bitrise-iOSTests
@@ -58,3 +59,5 @@ targets:
       - path: BitriseAPI
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.bivre.bitrise-client.bitrise-api
+    dependencies:
+      - carthage: APIKit
