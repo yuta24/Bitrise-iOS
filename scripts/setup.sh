@@ -12,3 +12,5 @@ then
 else
   echo "  + Mint found."
 fi
+
+bundle install --path vendor/bundle
