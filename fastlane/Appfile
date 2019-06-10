@@ -1,0 +1,5 @@
+app_identifier("com.bivre.bitrise-client")
+apple_id("yuta24@bivre.com")
+
+team_id("PS98BD6732")
+itc_team_id("118515096")
