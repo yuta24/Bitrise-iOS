@@ -1,7 +1,6 @@
 #!/usr/bin/swift sh
 import XcodeGenKit // https://github.com/yonaskolb/XcodeGen
 import ProjectSpec
-import Stencil // https://github.com/stencilproject/Stencil
 
 let project = Project(
   name: "Bitrise-iOS",
