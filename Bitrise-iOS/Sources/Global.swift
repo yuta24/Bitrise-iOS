@@ -7,5 +7,10 @@
 
 import Foundation
 import UIKit
+import Shared
 
-let app = App(window: UIWindow(frame: UIScreen.main.bounds))
+private let (dispatcher, driver) = Driver<AppState, AppMessage>.create(initial: .init(), mutation: { (state, message) -> AppState in
+    return state
+})
+
+let app = App(window: UIWindow(frame: UIScreen.main.bounds), dispatcher: dispatcher, driver: driver)

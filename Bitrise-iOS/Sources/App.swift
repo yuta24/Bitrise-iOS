@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Shared
 
 class Coordinator {
     let window: UIWindow
@@ -23,9 +24,13 @@ class Coordinator {
 
 class App {
     let coordinator: Coordinator
+    let dispatcher: Dispatcher<AppMessage>
+    let driver: Driver<AppState, AppMessage>
 
-    init(window: UIWindow) {
+    init(window: UIWindow, dispatcher: Dispatcher<AppMessage>, driver: Driver<AppState, AppMessage>) {
         self.coordinator = .init(window: window)
+        self.dispatcher = dispatcher
+        self.driver = driver
     }
 }
 

@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum AppMessage {
+    case loggedIn
+}
+
 struct AppState {
     enum LoginState {
         case unauthorized
